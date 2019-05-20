@@ -64,7 +64,7 @@ void call(parameters) {
                 agent none
                 when {allOf {branch parameters.script.commonPipelineEnvironment.getStepConfiguration('', '').productiveBranch; expression {return parameters.script.commonPipelineEnvironment.getStepConfiguration('piperInitRunStageConfiguration', env.STAGE_NAME).manualConfirmation}}}
                 steps {
-                    input message: 'Shall we proceed to promotion & release?'
+                    piperPipelineConfirm script: parameters.script
                 }
             }
             stage('Promote') {
